@@ -84,7 +84,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'postgres',
     },
-    'warm': {
+    'integration': {
         'ENGINE': 'django.db.backends.postgresql',
         'HOST': 'db',
         'PORT': 5432,
@@ -94,6 +94,7 @@ DATABASES = {
     }
 }
 
+DATABASE_ROUTERS = ['db.DBRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
