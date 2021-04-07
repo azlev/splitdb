@@ -3,6 +3,8 @@
 from django.db import migrations, models
 import django.db.models.deletion
 
+import db
+
 
 class Migration(migrations.Migration):
 
@@ -17,7 +19,7 @@ class Migration(migrations.Migration):
             name='Son',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('father', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='loggi.Father')),
+                ('father', db.SpanningForeignKey(on_delete=django.db.models.deletion.CASCADE, to='loggi.Father')),
             ],
         ),
     ]

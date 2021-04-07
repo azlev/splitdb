@@ -3,19 +3,29 @@ from django.db.models.fields.related import ForeignKey, ManyToManyField
 
 class DBRouter:
 
-    route_app_labels = {'integration'}
+    other_databases = { 'integration' }
 
     def db_for_read(self, model, **hints):
+        app_label = model._meta.app_label
+        if app_label in self.other_databases:
+            return app_label
         return None
 
     def db_for_write(self, model, **hints):
+        app_label = model._meta.app_label
+        if app_label in self.other_databases:
+            return app_label
         return None
 
     def allow_relation(self, obj1, obj2, **hints):
         return None
 
-    def allow_migrate(self, db, app_label, model_name=None, **hints):
-        return None
+    def allow_migrate(self, db, app_label, **hints):
+        if db in self.other_databases:
+            return db == app_label
+        if db == "default" and app_label in self.other_databases:
+            return False
+        return True
 
 
 class SpanningForeignKey(ForeignKey):

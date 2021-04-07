@@ -1,9 +1,10 @@
 from django.db import models
 
+from db import SpanningForeignKey
 from loggi.models import Father
 
 # Create your models here.
 
 class Son(models.Model):
-    father = models.ForeignKey(Father, on_delete=models.CASCADE)
+    father = SpanningForeignKey(Father, on_delete=models.CASCADE)
 
