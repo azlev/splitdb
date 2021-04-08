@@ -86,7 +86,7 @@ DATABASES = {
     },
     'integration': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'db',
+        'HOST': 'integration',
         'PORT': 5432,
         'NAME': 'integration',
         'USER': 'postgres',

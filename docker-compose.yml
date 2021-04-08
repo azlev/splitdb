@@ -12,6 +12,18 @@ services:
       - POSTGRES_DB=loggi
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+  integration:
+    image: postgres
+    volumes:
+      - ./data/integration:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=integration
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
